@@ -1,0 +1,64 @@
+﻿@model TrusteeApp.Domain.Dtos.UserModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class="fw-bold d-md-flex h-md-100 align-items-center justify-content-center mt-md-0">
+
+    <div class="col-md-5 col-lg-4 col-xl-3 bg-white p-5 pt-0 pt-md-5 animate__animated animate__pulse" style="border-radius: 10px">
+
+        <h2 class="py-md-3 py-5 my-5 my-md-0 mb-2">Login into your account</h2>
+
+        <div class="form-wrapper">
+
+            <form method="post" class="" enctype="multipart/form-data" asp-action="LoginPostRequest">
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+                <div class="form-group mb-3">
+
+                    <label class="mb-2" asp-for="Email"></label>
+
+                    <input class="form-control mb-2 pe-5 trustee-icon-email" type="email" asp-for="Email" autofocus="">
+
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+
+                    <label class=" mb-2" asp-for="Password"></label>
+
+                    <input class="form-control mb-2 pe-5 trustee-icon-password" type="password" asp-for="Password">
+
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-end mt-2"><a id="forgot-password" asp-controller="Account" asp-action="ForgotPassword">Forgot your password?</a></div>
+
+                <br />
+
+                <div class="form-group mb-4 mt-3">
+                    <button type="submit" class="fs-5 btn btn-md w-100 trustee-btn4 rounded" style="background-color: #d43662; color: white;">Login</button>
+                </div>
+
+                <div class="form-group d-flex justify-content-center mb-4">
+                    <a asp-action="Register"><span class="text-black">Don't have an account?</span> Sign-up</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

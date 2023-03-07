@@ -1,0 +1,16 @@
+{
+  "ApplicationUser": [],
+  "IdentityRole": [],
+  "TrusteePackage": [],
+  "UserContactDetails": [],
+  "MeansOfIdentification": [],
+  "SimpleWillMoney": [],
+  "SimpleWillAccount": [],
+  "SimpleWillOthers": [],
+  "SimpleWillMoneyAccountDetails": [],
+  "SimpleWillMoneyBeneficiary": [],
+  "SimpleWillRetirementAccount": [],
+  "SimpleWillRetirementBeneficiary": [],
+  "SimpleWillGuardian": [],
+  "SimpleWillExecutor": []
+}

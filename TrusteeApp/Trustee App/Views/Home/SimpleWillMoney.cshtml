@@ -1,0 +1,287 @@
+﻿@model TrusteeApp.ViewModels.SimpleWillMoneyVM
+
+@{
+    ViewData["Title"] = "Simple Will Page 1";
+
+    ViewBag.Id = Model.TrusteePackage.Id;
+}
+
+<div class="col-1 position-fixed trustee-back-media" style="">
+
+    <a asp-action="MeansOfIdentification" asp-route-packageId="@Model.TrusteePackage.Id" class="bg-transparent trustee-btn w-100 p-2 text-white border-0 d-flex flex-column align-items-center" style="width: 140px;">
+        <span class="fs-4 shadow-lg">Go Back</span>
+    </a>
+</div>
+
+<form class="">
+
+    <div class="fw-bold d-md-flex h-md-100 mt-md-0 text-white col-12">
+
+        <div class="m-4 m-lg-5 p-lg-5 pt-3 mt-5 d-flex flex-column align-items-start w-100">
+
+            <input hidden asp-for="TrusteePackage.Id" />
+
+            <h1 class="mt-5 pt-3">Simple Will</h1>
+
+            <p class="fw-normal">Select a property type for your will</p>
+
+            <div class="col-12 rounded bg-white" style="height: 1px;">
+            </div>
+
+            <h2 class="mt-4">1. Money</h2>
+
+            <div class="form-wrapper col-12 mt-4">
+
+                <div class="col-lg-2 ps-3 ps-lg-0 position-absolute trustee-text-media">
+                    <label class="">Bank account details</label>
+                </div>
+
+                <div class="d-flex flex-column align-items-end mb-2" id="add-owner-detail-div">
+
+                    <div class="d-flex col-8 owner-account">
+
+                        <div class="col-6 pe-4 form-group">
+
+                            <input class="form-control mb-2 owner-bankname" type="text" asp-for="@Model.SimpleWillMoneyAccountDetails[0].BankName" name="owner-bankname" placeholder="Bank Name">
+
+                            <span asp-validation-for="@Model.SimpleWillMoneyAccountDetails[0].BankName" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                        </div>
+
+                        <div class="col-6 form-group">
+
+                            <input class="form-control mb-2 owner-accountnumber" type="text" name="owner-accountnumber" asp-for="@Model.SimpleWillMoneyAccountDetails[0].AccountNumber" placeholder="Account Number">
+
+                            <span asp-validation-for="@Model.SimpleWillMoneyAccountDetails[0].AccountNumber" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                        </div>
+                    </div>
+
+                    @for (int i = 1; i < Model.SimpleWillMoneyAccountDetails.Count(); i++)
+                    {
+                        <div class="d-flex col-8 owner-account">
+
+                            <div class="col-6 pe-4 form-group">
+
+                                <input class="form-control mb-2 owner-bankname" type="text" asp-for="@Model.SimpleWillMoneyAccountDetails[i].BankName" name="owner-bankname" placeholder="Bank Name">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyAccountDetails[i].BankName" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+
+                            <div class="col-6 form-group">
+
+                                <input class="form-control mb-2 owner-accountnumber" type="text" name="owner-accountnumber" asp-for="@Model.SimpleWillMoneyAccountDetails[i].AccountNumber" placeholder="Account Number">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyAccountDetails[i].AccountNumber" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+
+                            <a href="#" class="lnk-owner-delete bg-transparent trustee-btn py-2 p-0 border-0 col-auto form-group position-absolute d-flex align-items-center" style="right: 50px;">
+                                <span class="text-danger rds-pointer fs-6"><i class="bi bi-trash"></i></span>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="col-8 form-group">
+
+                        <a href="#" id="btn-owner-add" class="bg-transparent trustee-btn py-2 p-0 border-0">
+                            <span class="fs-6 text-white"><i class="bi bi-plus"></i> Add another</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 rounded bg-white" style="height: 1px;">
+            </div>
+
+            <h4 class="mt-4">Details of funds to be given as inheritance</h4>
+
+            <div class="form-wrapper col-12 mt-4">
+
+                <div class="col-lg-2 ps-3 ps-lg-0 position-absolute trustee-text-media">
+                    <label class="">Beneficiary details</label>
+                </div>
+
+                <div class="d-flex flex-column align-items-end mb-2" id="add-ben-detail-div">
+
+                    <div class="col-8 mb-2 ben-account">
+
+                        <div class="d-flex">
+
+                            <div class="col-6 pe-4 form-group">
+
+                                <input class="form-control mb-2 ben-name" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryName" placeholder="Name" name="ben-name">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryName" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+
+
+                            <div class="col-6 form-group">
+
+                                <input class="form-control mb-2 relationship" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[0].Relationship" placeholder="Relationship" name="ben-relationship">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[0].Relationship" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+
+                            <div class="col-6 pe-4 form-group">
+
+                                <input class="form-control mb-2 ben-bankname" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryBankName" placeholder="Bank Name" name="ben-bankname">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryBankName" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+
+
+                            <div class="col-6 form-group">
+
+                                <input class="form-control mb-2 ben-accountnumber" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryAccountNumber" placeholder="Account Number" name="ben-accountnumber">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryAccountNumber" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+
+                            <div class="col-12 form-group">
+
+                                <input class="form-control mb-2 ben-address" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryAddress" placeholder="Address" name="ben-address">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[0].BeneficiaryAddress" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+
+                            <div class="col-12 form-group">
+
+                                <input class="form-control mb-2 ben-amount" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[0].AmountToBeGiven" placeholder="Amount/Share to be Given" name="ben-amount">
+
+                                <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[0].AmountToBeGiven" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @for (int i = 1; i < Model.SimpleWillMoneyBeneficiary.Count(); i++)
+                    {
+                        <div class="col-8 mb-2 ben-account">
+
+                            <div class="d-flex">
+
+                                <div class="col-6 pe-4 form-group">
+
+                                    <input class="form-control mb-2 ben-name" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryName" placeholder="Name" name="ben-name">
+
+                                    <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryName" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                                </div>
+
+
+                                <div class="col-6 form-group">
+
+                                    <input class="form-control mb-2 relationship" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[i].Relationship" placeholder="Relationship" name="ben-relationship">
+
+                                    <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[i].Relationship" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+
+                                <div class="col-6 pe-4 form-group">
+
+                                    <input class="form-control mb-2 ben-bankname" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryBankName" placeholder="Bank Name" name="ben-bankname">
+
+                                    <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryBankName" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                                </div>
+
+
+                                <div class="col-6 form-group">
+
+                                    <input class="form-control mb-2 ben-accountnumber" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryAccountNumber" placeholder="Account Number" name="ben-accountnumber">
+
+                                    <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryAccountNumber" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                                </div>
+
+                                <a href="#" class="lnk-ben-delete bg-transparent trustee-btn py-2 p-0 border-0 col-auto form-group position-absolute d-flex align-items-center" style="right: 50px;">
+                                    <span class="text-danger rds-pointer fs-6"><i class="bi bi-trash"></i></span>
+                                </a>
+                            </div>
+
+                            <div class="d-flex">
+
+                                <div class="col-12 form-group">
+
+                                    <input class="form-control mb-2 ben-address" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryAddress" placeholder="Address" name="ben-address">
+
+                                    <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[i].BeneficiaryAddress" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+
+                                <div class="col-12 form-group">
+
+                                    <input class="form-control mb-2 ben-amount" type="text" asp-for="@Model.SimpleWillMoneyBeneficiary[i].AmountToBeGiven" placeholder="Amount/Share to be Given" name="ben-amount">
+
+                                    <span asp-validation-for="@Model.SimpleWillMoneyBeneficiary[i].AmountToBeGiven" class="text-danger"></span><div class="" style="height: 6px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+
+                    <div class="col-8 form-group">
+
+                        <a href="#" id="btn-ben-add" class="bg-transparent trustee-btn py-2 p-0 border-0">
+                            <span class="fs-6 text-white"><i class="bi bi-plus"></i> Add another</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/js/simpleWillMoneyScript.bundle.js" asp-append-version="true"></script>
+
+    <script>
+
+        document.addEventListener("beforeunload", simpleWillMoneyScript.displaySpinner);
+        document.addEventListener("load", simpleWillMoneyScript.displaySpinner);
+
+        document.addEventListener("DOMContentLoaded", registerRouteAction);
+
+        let base_url = window.location.origin;
+
+        function registerRouteAction() {
+
+            addScriptEventListeners();
+        }
+
+        function addScriptEventListeners() {
+            simpleWillMoneyScript.addScriptEventListeners();
+        }
+
+        const packageId = '@(ViewBag.Id)';
+
+    const saveStep = () => {
+
+        simpleWillMoneyScript.saveStep(packageId);
+        }
+
+        simpleWillMoneyScript.hideSpinner();
+    </script>
+
+}

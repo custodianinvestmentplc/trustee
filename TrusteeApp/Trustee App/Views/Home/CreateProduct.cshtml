@@ -1,0 +1,276 @@
+@model TrusteeApp.Domain.Dtos.TrusteePackage
+
+@{
+    ViewData["Title"] = "Product Selection";
+}
+
+
+<div class="d-md-flex h-md-100 align-items-center fw-bold">
+
+    <div class="col-12 pt-5 pt-md-0">
+
+        <div class="p-3 mt-5 p-md-5 bg-white m-3 m-md-5 rounded" style="border-radius: 10px">
+
+            <div class="row align-items-center ms-3 ms-lg-5 mb-2">
+
+                <div class="col-1">
+                    <a class="fs-5 btn btn-md border border-2 p-1 p-md-2 rounded trustee-btn shadow-lg" href="#" onclick="window.history.go(-1);" style="color: #d43662;">
+                        <i class="bi bi-arrow-left fw-bolder"></i>
+                        <span class="d-none d-xl-inline">Back</span>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <h1 style="color: #d43662;">Select Product</h1>
+
+                    <div class="col-1" style="background-color: #d43662; height: 2.5px;">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-end" style="color: #8D99AE;">Selection Preview</h3>
+
+            <form method="post" class="" asp-action="CreateProductPost">
+
+                <div class="row">
+
+                    <div class="shadow-lg col trustees-table p-3 m-3 p-lg-5 m-lg-5 rounded" style="background-color: #d43662; color: white;">
+
+                        <div class="d-sm-flex align-items-center form-group col-12 mt-3 mb-3 me-4 fs-5">
+
+                            <label class="col-sm-5 col-lg-5 col-xl-3 col-xxl-2 me-lg-4 me-xl-3 me-xxl-2 mb-2 mb-sm-3 text-truncate" asp-for="Template">Template </label>
+
+                            <div class="col-sm-6 col-md-5 col-xl-4 col-xxl-3">
+                                <select  data-prev_target="temp-prev" class="form-select mb-2" asp-for="Template" autofocus="">
+                                    <option>Will</option>
+                                    <option>Trust</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="d-lg-flex justify-content-between align-items-center mb-3 fs-5">
+
+                            <div class="col col-lg-6 pe-lg-2 pe-xl-3 form-group">
+
+                                <label class="mb-2" asp-for="Language">Language</label>
+
+                                <select  data-prev_target="lang-prev" class="form-select mb-2" asp-for="Language" autofocus="">
+                                    <option>English</option>
+                                    <option>Islamic</option>
+                                </select>
+                            </div>
+
+
+                            <div class="col col-lg-6 ps-lg-2 ps-xl-3 form-group">
+
+                                <label class="mb-2" asp-for="Product">Product</label>
+
+                                <select  data-prev_target="prod-prev" class="form-select mb-2" asp-for="Product" autofocus="">
+                                    <option>Simple</option>
+                                    <option>Standard</option>
+                                    <option>Comprehensive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="col-6 d-flex align-items-center p-3 mb-md-0 shadow-lg animate__animated animate__fadeIn animate__delay-1s">
+
+                        <div class="col-7" style="">
+                            <div class="fs-1 text-secondary d-flex align-items-center mt-4 mb-1">
+                                <span>Template:&nbsp;</span> <span class="text-uppercase" id="temp-prev"></span>
+                            </div>
+                            <div class="d-flex text-info align-items-center mb-5">
+                                <h3>Language:&nbsp;</h3><h3 class="text-uppercase" id="lang-prev"></h3>
+                            </div>
+
+                            <div class="d-flex text-black align-items-center pt-5">
+                                <h2>Product:&nbsp;</h2><h2 class="text-uppercase text-truncate" id="prod-prev"></h2>
+                            </div>
+                            <div class="fs-5 d-flex text-secondary align-items-center">
+                                <span>Price:&nbsp;</span><span class="text-uppercase" id="price-prev"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-none d-lg-inline trustees-table-prd-image3" style="">
+                            <img id="prev-img" src="" class="card-img rounded" alt="" style="object-fit: cover;">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="form-group mb-4 mx-3 mx-lg-5 pt-3 pt-lg-0">
+                    <button id="select-btn" disabled type="submit" class="w-25 shadow-lg fs-5 btn btn-md trustee-btn4 rounded bg-success" style="background-color: #d43662; color: white;">
+                        Select&nbsp;
+                        <i class="d-none d-lg-inline bi bi-check-square fw-bolder"></i>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+
+        const selectBtn = document.getElementById('select-btn');
+
+        document.addEventListener('DOMContentLoaded', resetInputs);
+
+        document.getElementById('Template').addEventListener('change', updatePrev);
+        document.getElementById('Language').addEventListener('change', updatePrev);
+        document.getElementById('Product').addEventListener('change', updatePrev);
+
+        function updatePrev(e) {
+
+            const targetPrev = e.target.getAttribute('data-prev_target');
+
+            document.getElementById(targetPrev).innerHTML = e.target.value;
+
+            if (targetPrev === 'prod-prev') {
+
+                switch (e.target.value) {
+
+                    case 'Simple':
+                        document.getElementById('price-prev').innerHTML = 'N5,000';
+                        break;
+
+                    case 'Standard':
+                        document.getElementById('price-prev').innerHTML = 'N8,000';
+                        break;
+
+                    case 'Comprehensive':
+                        document.getElementById('price-prev').innerHTML = 'N10,000';
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+
+            if (targetPrev === 'temp-prev') {
+
+                switch (e.target.value) {
+
+                    case 'Will':
+                        document.getElementById('prev-img').src = '/images/hand.jpg';
+                        break;
+
+                    case 'Trust':
+                        document.getElementById('prev-img').src = '/images/hands.jpg';
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+
+            if (document.getElementById('Template').value != '' && document.getElementById('Language').value != '' && document.getElementById('Product').value != '')
+                selectBtn.disabled = false;
+
+            else selectBtn.disabled = true;
+        }
+
+        function resetInputs() {
+
+            document.getElementById('Template').value = '';
+            document.getElementById('Language').value = '';
+            document.getElementById('Product').value = '';
+        }
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="submitForm" class="p-3 mt-5 p-md-5 bg-white m-3 m-md-5 rounded">
+
+    <div class="ms-3 ms-lg-5 mb-5">
+        <h1 style="color: #d43662;">Select Product</h1>
+
+        <div class="col-1" style="background-color: #d43662; height: 2.5px;">
+        </div>
+    </div>
+
+
+    <div class="ms-3 ms-lg-5 col-6 col-lg-8 col-xl-9 col-xxl-10 mb-5">
+
+        <a class="fs-5 btn btn-md border border-2 p-1 p-md-2 rounded trustee-btn" href="#" onclick="window.history.go(-1);" style="background-color: #d43662; color: white;">
+            <i class="bi bi-arrow-left fw-bolder"></i>
+            Back
+        </a>
+    </div>
+
+    <form method="post" class="" asp-action="ContactDetails">
+
+        <div class=" p-3 mx-3 p-lg-5 m-lg-5 rounded" style="background-color: #d43662; color: white;">
+
+            <div class="">
+
+                <div class="row d-flex align-items-center form-group mb-3 pe-3">
+
+                    <label class="col mb-2" asp-for="Template">Template Type: </label>
+
+                    <select class="col form-select mb-2 fs-5" id="Template" autofocus="">
+                        <option>Will</option>
+                        <option>Trust</option>
+                    </select>-->
+@*<span asp-validation-asp-for="LastName" class="text-danger"></span>*@
+<!--</div>
+</div>
+
+<div class="">
+
+    <div class="col form-group">
+
+        <label class="mb-2" asp-for="Language">Language</label>
+
+        <select class="form-select mb-2 fs-5" id="Language" autofocus="">
+            <option>English</option>
+            <option>Islamic</option>
+        </select>-->
+@*<span asp-validation-asp-for="LastName" class="text-danger"></span>*@
+
+<!--</div>
+
+<div class="col form-group">
+
+    <label class="mb-2" asp-for="Product">Product</label>
+
+    <select class="form-select mb-2 fs-5" id="Product" autofocus="">
+        <option>Simple</option>
+        <option>Standard</option>
+        <option>Comprehensive</option>
+    </select>-->
+@*<span asp-validation-asp-for="LastName" class="text-danger"></span>*@
+<!--</div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="ms-3 ms-lg-5 col-6 col-lg-8 col-xl-9 col-xxl-10 mb-5">
+            <button type="submit" class="fs-5 btn btn-md trustee-btn4 rounded" style="background-color: #d43662; color: white;">Select</button>
+        </div>
+    </form>
+</div>-->

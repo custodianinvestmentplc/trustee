@@ -1,0 +1,219 @@
+﻿@model List<TrusteeApp.Domain.Dtos.TrusteePackage>
+
+@{
+    ViewData["Title"] = "Welcome Page";
+}
+
+<div class="d-md-flex h-md-100 align-items-center mt-md-0 pt-5 pt-md-0">
+
+
+    <div class="p-3 mt-5 p-md-5 bg-white m-3 m-md-5 rounded">
+
+        <div class="d-flex">
+            <div class="ms-3 ms-lg-5 col-6 col-lg-8 col-xl-9 col-xxl-10">
+                <h1 class="" style="color: #d43662;">My Products</h1>
+
+                <div class="col-1" style="background-color: #d43662; height: 2.5px;">
+                </div>
+            </div>
+
+            <form asp-action="CreateProduct" method="get" class="col-6 col-lg-3 card-total mb-5">
+                <button class="btn btn-lg offset-2 offset-sm-4 offset-md-5 offset-lg-0 border border-2 p-1 p-md-2 rounded trustee-btn shadow-lg" type="submit" style="background-color: #d43662; color: white;">
+                    <i class="bi bi-plus-square-fill fw-bolder"></i>&nbsp;
+                    Buy Product
+                </button>
+            </form>
+
+        </div>
+
+        @if (Model.Count() > 0)
+        {
+
+            <div class="trustees-table2 px-3 mx-3 px-lg-5 mx-lg-5" style="background-color: white; color: #d43662;">
+
+                <div class="trustees-table-prd border-0">
+
+                    <div class="col-1"></div>
+                    <div class="trustees-table-prd-lg col-2"></div>
+
+                    <div class="fs-4 col-2 text-truncate">
+                        TEMPLATE
+                    </div>
+                    <div class="fs-4 col-2 text-truncate">
+                        LANGUAGE
+                    </div>
+                    <div class="fs-4 col-2 text-truncate">
+                        PRODUCT
+                    </div>
+                    <div class="fs-4 col-3 col-xxl-2 text-truncate">
+                        DATE CREATED
+                    </div>
+                    <div class="fs-4 col-2 text-truncate trustees-table-prd-xs">
+                        STATUS
+                    </div>
+                </div>
+            </div>
+
+            <div class="trustees-table px-3 mx-3 px-lg-5 mx-lg-5 rounded" style="height: 300px; overflow-y: scroll;">
+
+                @if (Model.Count() > 2)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <a onclick="onMouseClick(this)" onmouseover="onMouseOver(this)" onmouseout="onMouseOut(this)" asp-action="ContactDetails" asp-route-id="@Model[i].Id" class="trustees-table-prd my-2 rounded shadow-lg trustee-btn5 animate__animated animate__fadeInUp" style="background-color: #d43662; color: white;">
+
+                            <div class="col-1"></div>
+
+                            <div class="ps-lg-3 col-2 trustees-table-prd-lg">
+
+                                @if (Model[i].Template == "Will")
+                                {
+                                    <img src="/images/hand.jpg" class="card-img rounded trustees-table-prd-image py-4 py-lg-0 px-0 mx-0 px-md-3 mx-md-3" alt="">
+                                }
+                                else
+                                {
+                                    <img src="/images/hands.jpg" class="card-img rounded trustees-table-prd-image py-4 py-lg-0 px-0 mx-0 px-md-3 mx-md-3" alt="">
+                                }
+                            </div>
+
+                            <div class="col-2 fs-4 text-white">@Model[i].Template</div>
+
+                            <div class="text-white col-2">
+                                <span class="fs-5">@Model[i].Language</span>
+                            </div>
+
+                            <div class="text-white col-2">
+                                <span class="fs-5">@Model[i].Product</span>
+                            </div>
+
+                            <div class="text-white col-3 col-xxl-2">
+                                <span class="fs-5">@Model[i].CreateDate.ToString("dd MMM yyyy")</span>
+                            </div>
+
+                            <div class="text-white col-2 trustees-table-prd-xs">
+                                <span class="fs-5">@Model[i].PackageStatus</span>
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        var delay = "animate__delay-" + i + "s";
+
+                        <a onclick="onMouseClick(this)" onmouseover="onMouseOver(this)" onmouseout="onMouseOut(this)" asp-action="ContactDetails" asp-route-id="@Model[i].Id" class="trustees-table-prd my-2 rounded shadow-lg trustee-btn5 animate__animated animate__fadeInUp @delay" style="background-color: #d43662; color: white;">
+
+                            <div class="col-1"></div>
+
+                            <div class="ps-lg-3 col-2 trustees-table-prd-lg">
+
+                                @if (Model[i].Template == "Will")
+                                {
+                                    <img src="/images/hand.jpg" class="card-img rounded trustees-table-prd-image py-4 py-lg-0 px-0 mx-0 px-md-3 mx-md-3" alt="">
+                                }
+                                else
+                                {
+                                    <img src="/images/hands.jpg" class="card-img rounded trustees-table-prd-image py-4 py-lg-0 px-0 mx-0 px-md-3 mx-md-3" alt="">
+                                }
+                            </div>
+
+                            <div class="col-2 fs-4 text-white">@Model[i].Template</div>
+
+                            <div class="text-white col-2">
+                                <span class="fs-5">@Model[i].Language</span>
+                            </div>
+
+                            <div class="text-white col-2">
+                                <span class="fs-5">@Model[i].Product</span>
+                            </div>
+
+                            <div class="text-white col-3 col-xxl-2">
+                                <span class="fs-5">@Model[i].CreateDate.ToString("dd MMM yyyy")</span>
+                            </div>
+
+                            <div class="text-white col-2 trustees-table-prd-xs">
+                                <span class="fs-5">@Model[i].PackageStatus</span>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        }
+        else
+        {
+            <div class="trustees-table px-5 mx-5 rounded animate__animated animate__shakeX" style="background-color: #d43662; color: white;">
+
+                <div class="trustees-table-prd-empty">
+                    <div class="product-empty mx-auto d-flex align-items-center">
+                        @*<i class="bi bi-emoji-frown-fill product-empty-icon" style="font-size: 30px;"></i>*@
+                        <div class="product-empty-text">
+                            @*<h3 class="product-empty-title">YOU CURRENTLY HAVE NO PRODUCT</h3>*@
+                            <h5 class="product-empty-title text-center mt-2">Click <a asp-action="CreateProduct">Here </a>to create a product</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        function onMouseClick(ele) {
+            //ele.preventDefault()
+            ele.classList.remove('animate__animated', 'animate__fadeInUp', 'animate__delay-1s', 'animate__delay-2s', 'animate__fadeOutRight');
+            ele.classList.add('animate__animated', 'animate__fadeOutRight');
+        }
+
+        function onMouseOver(ele) {
+            ele.classList.remove('animate__animated', 'animate__fadeInUp', 'animate__delay-1s', 'animate__delay-2s', 'animate__pulse');
+            ele.classList.add('animate__animated', 'animate__pulse');
+        }
+               
+        function onMouseOut(ele) {
+            ele.classList.remove('animate__animated', 'animate__pulse');
+        }      
+        
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*document.addEventListener('DOMContentLoaded', () => {
+
+            let prods = document.getElementsByClassName('trustee-btn5');
+
+            for (let i = 0; i < prods.length; i++) {
+
+                prods[i].addEventListener('onmouseover', () => {
+
+
+                    prods[i].classList.add('animate__animated', 'animate__bounceOutLeft');
+                })
+
+                prods[i].addEventListener('onmouseout', () => {
+
+
+                    prods[i].classList.remove('animate__animated', 'animate__bounceOutLeft');
+                })
+            }
+        })*@

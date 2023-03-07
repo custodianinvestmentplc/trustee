@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Trustee_App</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="System.Text.Json" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="log4net" />
+    <None Remove="AutoMapper" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Microsoft.Identity.Client" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" />
+    <None Remove="Dapper" />
+    <None Remove="Microsoft.Data.SqlClient" />
+    <None Remove="System.Data.SqlClient" />
+    <None Remove="Microsoft.AspNetCore.Identity.UI" />
+    <None Remove="Views\Account\" />
+    <None Remove="Mailjet.Api" />
+    <None Remove="Payloads\" />
+    <None Remove="Views\Home\Homepage.cshtml~~" />
+    <None Remove="Views\Shared\_UserLayout.cshtml~" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.49.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.14" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="Mailjet.Api" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+    <Folder Include="Payloads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\family.jpg" />
+    <Content Remove="Views\Home\HistoryPage.cshtml" />
+    <Content Remove="Views\Account\RegisterConfirmation %28copy%29.cshtml" />
+  </ItemGroup>
+</Project>

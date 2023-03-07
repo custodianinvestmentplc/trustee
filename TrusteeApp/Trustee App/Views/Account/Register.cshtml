@@ -1,0 +1,170 @@
+﻿@model TrusteeApp.Domain.Dtos.UserModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="fw-bold d-md-flex h-md-100 align-items-center justify-content-center mt-md-0">
+
+    <div class="pt-0 pt-md-5 col-md-5 col-lg-4 col-xl-3 bg-white p-5 animate__animated animate__fadeIn" style="border-radius: 10px">
+
+        <h2 class="py-md-3 py-5 my-5 my-md-0 mb-2">Sign up</h2>
+
+        <div class="form-group mb-5">
+            <a asp-controller="Account" asp-action="Login"><span class="text-black">Have an account?</span> Login</a>
+        </div>
+
+        <div class="form-wrapper">
+
+            <form method="post" class="" asp-action="RegisterPost">
+
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+                <div class="row mb-3">
+
+                    <div class="col form-group">
+
+                        <label class="mb-2" asp-for="FirstName"></label>
+
+                        <input class="form-control mb-2 pe-5 trustee-icon-person" type="text" asp-for="FirstName" autofocus="">
+
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="col form-group">
+
+                        <label class="mb-2" asp-for="LastName"></label>
+
+                        <input class="form-control mb-2 pe-5 trustee-icon-person" type="text" asp-for="LastName">
+
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col form-group">
+
+                        <label class="mb-2" asp-for="DateOfBirth"></label>
+
+                        <input class="form-control mb-2 trustee-icon-calendar" type="date" asp-for="DateOfBirth">
+
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="col form-group">
+
+                        <label class="mb-2" asp-for="PhoneNumber"></label>
+
+                        <input class="form-control mb-2 pe-5 trustee-icon-phone" type="tel" asp-for="PhoneNumber">
+
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+
+                    <label class="mb-2" asp-for="Email"></label>
+
+                    <input class="form-control mb-2 pe-5 trustee-icon-email" type="email" asp-for="Email">
+
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+
+                    <label class=" mb-2" asp-for="Password"></label>
+
+                    <input class="form-control mb-2 pe-5 trustee-icon-password" type="password" asp-for="Password">
+
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" asp-for="TermsAgreed">
+                    <label class="form-check-label" asp-for="TermsAgreed"></label>
+                </div>
+
+                <br />
+
+                <div class="form-group mt-2">
+                    <button disabled id="postReg" type="submit" class="fs-5 btn btn-md w-100 trustee-btn4 rounded" style="background-color: #d43662; color: white;">Sign up</button>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+
+    @if (Model?.DateOfBirth == DateTime.Parse("01/01/0001 00:00:00"))
+    {
+
+        <script>document.addEventListener("DOMContentLoaded", resetDateInput);
+
+            function resetDateInput() {
+
+                const $this = $("#DateOfBirth");
+                $this.val("");
+
+            }</script>
+    }
+
+    <script>document.addEventListener("DOMContentLoaded", () => {
+
+            let checker = document.getElementById('TermsAgreed');
+            let sendbtn = document.getElementById('postReg');
+
+            checker.checked = false;
+            checker.onchange = () => {
+
+                if (checker.checked) sendbtn.disabled = false;
+
+                else sendbtn.disabled = true;
+            }
+
+        })</script>
+
+
+
+}
+
+
+
+
+
+@*<script>document.addEventListener("DOMContentLoaded", setDateMax);
+
+    function setDateMax() {
+
+        const $this = $("#DateOfBirth");
+
+        const today = new Date();
+
+        const currentYear = today.getFullYear();
+        const maxYear = currentYear - 18;
+
+        const currentMonth = today.getMonth();
+        const currentDay = today.getDate();
+        const todayToISO = today.toISOString();
+
+        const maxDate = new Date(maxYear, currentMonth, currentDay).toISOString();
+
+        const maxDateValue = maxDate.split('T');
+
+        console.log(maxDate);
+        console.log(maxDateValue);
+
+        $this.attr("max", maxDateValue);
+
+    }</script>*@

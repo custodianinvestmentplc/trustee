@@ -1,0 +1,216 @@
+﻿@model TrusteeApp.ViewModels.SimpleWillOthersVM
+
+@{
+    ViewData["Title"] = "Simple Will Page 3";
+
+    ViewBag.Id = Model.TrusteePackage.Id;
+}
+
+
+<div class="col-1 position-fixed trustee-back-media" style="">
+
+    <a asp-action="SimpleWillAccount" asp-route-packageId="@Model.TrusteePackage.Id" class="bg-transparent trustee-btn w-100 p-2 text-white border-0 d-flex flex-column align-items-center" style="width: 140px;">
+        <span class="fs-4 shadow-lg">Go Back</span>
+    </a>
+</div>
+
+<form class="">
+
+    <div class="fw-bold d-md-flex h-md-100 mt-md-0 text-white col-12">
+
+        <div class="m-4 m-lg-5 p-lg-5 pt-3 mt-5 d-flex flex-column align-items-start w-100">
+
+            <input hidden asp-for="TrusteePackage.Id" />
+
+            <h1 class="mt-5 pt-3">Simple Will</h1>
+
+            <p class="fw-normal">Select a property type for your will</p>
+
+            <div class="col-12 rounded bg-white" style="height: 1px;">
+            </div>
+
+            <h2 class="mt-4">3. Others</h2>
+
+            <div class="form-wrapper col-12 mt-4">
+
+                <div class="mb-3 d-flex">
+
+                    <div class="col-2 col-lg-2 ps-3 ps-lg-0 ">
+                        <label class="">General Wishes, Last Words, Declarations &Aacute; Final Instructions</label>
+                    </div>
+
+                    <div class="d-flex justify-content-end offset-2 col-8 form-group">
+
+                        <textarea class="form-control mb-2" type="text" asp-for="SimpleWillOthers.GeneralWishes" placeholder=""></textarea>
+                        @*<span asp-validation-for="SimpleWillOthers.GeneralWishes" class="text-danger ps-3 pt-2"></span>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 rounded bg-white" style="height: 1px;">
+            </div>
+
+            <div class="form-wrapper col-12 mt-4">
+
+                <div class="col-3 col-lg-2 ps-3 ps-lg-0 position-absolute trustee-text-media">
+                    <label class="">Name of Executor(s) of your Will</label>
+                </div>
+
+                <div class="d-flex flex-column align-items-end mb-2" id="add-exe-detail-div">
+
+                    <div class="d-flex col-8 owner-exe">
+
+                        <div class="col-6 pe-4 form-group">
+
+                            <input class="form-control mb-2 exe-firstname" type="text" asp-for="@Model.SimpleWillExecutors[0].FirstNameOfExecutor" name="exe-firstname" placeholder="First Name">
+
+                            <span asp-validation-for="@Model.SimpleWillExecutors[0].FirstNameOfExecutor" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-6 form-group">
+
+                            <input class="form-control mb-2 exe-lastname" type="text" name="exe-lastname" asp-for="@Model.SimpleWillExecutors[0].LastNameOfExecutor" placeholder="Last Name">
+
+                            <span asp-validation-for="@Model.SimpleWillExecutors[0].LastNameOfExecutor" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    @for (int i = 1; i < Model.SimpleWillExecutors.Count(); i++)
+                    {
+                        <div class="d-flex col-8 owner-exe">
+
+                            <div class="col-6 pe-4 form-group">
+
+                                <input class="form-control mb-2 exe-firstname" type="text" asp-for="@Model.SimpleWillExecutors[i].FirstNameOfExecutor" name="exe-firstname" placeholder="First Name">
+
+                                <span asp-validation-for="@Model.SimpleWillExecutors[i].FirstNameOfExecutor" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-6 form-group">
+
+                                <input class="form-control mb-2 exe-lastname" type="text" name="exe-lastname" asp-for="@Model.SimpleWillExecutors[i].LastNameOfExecutor" placeholder="Last Name">
+
+                                <span asp-validation-for="@Model.SimpleWillExecutors[i].LastNameOfExecutor" class="text-danger"></span>
+                            </div>
+
+                            <a href="#" class="lnk-exe-delete bg-transparent trustee-btn py-2 p-0 border-0 col-auto form-group position-absolute d-flex align-items-center" style="right: 50px;">
+                                <span class="text-danger rds-pointer fs-6"><i class="bi bi-trash"></i></span>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="col-8 form-group">
+
+                        <a href="#" id="btn-exe-add" class="bg-transparent trustee-btn py-2 p-0 border-0">
+                            <span class="fs-6 text-white"><i class="bi bi-plus"></i> Add another</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 rounded bg-white" style="height: 1px;">
+            </div>
+
+            <div class="form-wrapper mt-2 col-12 mt-4">
+
+                <div class="col-3 col-lg-2 ps-3 ps-lg-0 position-absolute trustee-text-media">
+                    <label class="">Name of Guardian(s) for children that are minors (less than 18 yrs)</label>
+                </div>
+
+                <div class="d-flex flex-column align-items-end mb-2" id="add-grd-detail-div">
+
+                    <div class="d-flex col-8 owner-grd">
+
+                        <div class="col-6 pe-4 form-group">
+
+                            <input class="form-control mb-2 grd-firstname" type="text" asp-for="@Model.SimpleWillGuardians[0].FirstNameOfGuardian" name="grd-firstname" placeholder="First Name">
+
+                            <span asp-validation-for="@Model.SimpleWillGuardians[0].FirstNameOfGuardian" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-6 form-group">
+
+                            <input class="form-control mb-2 grd-lastname" type="text" name="grd-lastname" asp-for="@Model.SimpleWillGuardians[0].LastNameOfGuardian" placeholder="Last Name">
+
+                            <span asp-validation-for="@Model.SimpleWillGuardians[0].LastNameOfGuardian" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    @for (int i = 1; i < Model.SimpleWillGuardians.Count(); i++)
+                    {
+                        <div class="d-flex col-8 owner-grd">
+
+                            <div class="col-6 pe-4 form-group">
+
+                                <input class="form-control mb-2 grd-firstname" type="text" asp-for="@Model.SimpleWillGuardians[i].FirstNameOfGuardian" name="grd-firstname" placeholder="First Name">
+
+                                <span asp-validation-for="@Model.SimpleWillGuardians[i].FirstNameOfGuardian" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-6 form-group">
+
+                                <input class="form-control mb-2 grd-lastname" type="text" name="grd-lastname" asp-for="@Model.SimpleWillGuardians[i].LastNameOfGuardian" placeholder="Last Name">
+
+                                <span asp-validation-for="@Model.SimpleWillGuardians[i].LastNameOfGuardian" class="text-danger"></span>
+                            </div>
+
+                            <a href="#" class="lnk-grd-delete bg-transparent trustee-btn py-2 p-0 border-0 col-auto form-group position-absolute d-flex align-items-center" style="right: 50px;">
+                                <span class="text-danger rds-pointer fs-6"><i class="bi bi-trash"></i></span>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="col-8 form-group">
+
+                        <a href="#" id="btn-grd-add" class="bg-transparent trustee-btn py-2 p-0 border-0">
+                            <span class="fs-6 text-white"><i class="bi bi-plus"></i> Add another</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/js/trusteeSimplewillOthersScript.bundle.js" asp-append-version="true"></script>
+
+    <script>
+
+        document.addEventListener("beforeunload", trusteeSimplewillOthersScript.displaySpinner);
+        document.addEventListener("load", trusteeSimplewillOthersScript.displaySpinner);
+
+        document.addEventListener("DOMContentLoaded", registerRouteAction);
+
+        let base_url = window.location.origin;
+
+        function registerRouteAction() {
+
+            addScriptEventListeners();
+        }
+
+        function addScriptEventListeners() {
+            trusteeSimplewillOthersScript.addScriptEventListeners();
+        }
+
+        const packageId = '@(ViewBag.Id)';
+
+    const saveStep = () => {
+
+        trusteeSimplewillOthersScript.saveStep(packageId);
+        }
+
+        trusteeSimplewillOthersScript.hideSpinner();
+    </script>
+
+}

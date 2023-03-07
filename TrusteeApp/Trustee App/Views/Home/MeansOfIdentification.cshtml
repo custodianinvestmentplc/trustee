@@ -1,0 +1,114 @@
+﻿@model TrusteeApp.Domain.Dtos.MeansOfIdentification
+
+@{
+    ViewData["Title"] = "Means of Identification Page";
+}
+
+
+<div class="col-1 position-fixed trustee-back-media" style="">
+
+    <a asp-action="ContactDetails" asp-route-id="@Model.PackageId" class="bg-transparent trustee-btn w-100 p-2 text-white border-0 d-flex flex-column align-items-center" style="width: 140px;">
+        <span class="fs-4 shadow-lg">Go Back</span>
+    </a>
+</div>
+
+<form method="post" class="">
+
+    <div class="col-1 position-fixed" style="bottom: 5%; right: 5%; width: 140px;">
+
+        <button type="submit" asp-action="SaveMeansOfIdentification" asp-controller="Home" class="trustee-btn2 rounded w-100 p-2 text-white  border border-white d-flex flex-column align-items-center shadow-lg" style="background-color: #d43662;">
+            <span class="text-truncate fs-4">Continue</span>
+        </button>
+    </div>
+
+    <div class="fw-bold d-md-flex h-md-100 align-items-center mt-md-0 justify-content-center">
+
+        <div class="position-absolute postion-md-relative trustee-media d-flex flex-column align-items-center col-lg-6">
+
+            <div class="bg-white p-5 col-12 shadow-lg animate__animated animate__pulse" style="border-radius: 10px">
+
+                <h2 class="mt-5">Means of Identification</h2>
+
+                <div class="col-2 rounded bg-black mb-5" style="height: 2.5px;">
+                </div>
+
+                <div class="form-wrapper">
+
+                    <input hidden asp-for="PackageId" />
+
+                    <div class="row mb-3">
+
+                        <div class="col form-group">
+
+                            <label class="mb-3" asp-for="NameOfEmployer"></label>
+
+                            <input class="trustee-form-control mb-2 " type="text" asp-for="NameOfEmployer">
+
+                            <span asp-validation-for="NameOfEmployer" class="text-danger"></span>
+                        </div>
+
+                        <div class="col form-group">
+
+                            <label class="mb-3" asp-for="MeansOfId"></label>
+
+                            <select class="trustee-form-control mb-2" type="text" asp-for="MeansOfId">
+                                <option>Driver's Licence</option>
+                                <option>NIN</option>
+                                <option>Passport</option>
+                            </select>
+
+                            <span asp-validation-for="MeansOfId" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row mb-5">
+
+                        <div class="col form-group">
+
+                            <label class="mb-3" asp-for="IdNumber"></label>
+
+                            <input class="trustee-form-control mb-2 " type="text" asp-for="IdNumber">
+
+                            <span asp-validation-for="IdNumber" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="col form-group">
+
+                            <label class="mb-3" asp-for="TaxClearanceIdNo"></label>
+
+                            <input class="trustee-form-control mb-2 " type="text" asp-for="TaxClearanceIdNo">
+
+                            <span asp-validation-for="TaxClearanceIdNo" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-2 mt-5 mx-5">
+
+                <div class="d-flex align-items-center shadow-lg">
+
+                    <div class="col-4 me-3 rounded bg-white trustee-btn" style="height: 2.5px;">
+                    </div>
+
+
+                    <div class="col-7 rounded bg-white trustee-btn" style="height: 7px;">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    }

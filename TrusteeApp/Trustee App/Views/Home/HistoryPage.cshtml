@@ -1,0 +1,364 @@
+﻿@*@model TrusteeApp.ViewModels.IndexViewModel*@
+
+@{
+    ViewData["Title"] = "Welcome Page";
+}
+
+
+
+
+
+
+@*@model TrusteeApp.ViewModels.IndexViewModel*@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="position-absolute" style="margin-left: 9%; bottom: 75%">
+
+    <div class="nav trustee-switch-parent ms-md-3 shadow-lg">
+
+        <div class="d-flex trustee-switch left text-center" id="trustee-switch-control">
+
+            <div id="tabFade-1" tab-switch-direction="left" class="trustee-switch-child active" data-bs-toggle="tab" data-bs-target="#tabFade-pane-1"><h3 class="">English</h3></div>
+
+            <div id="tabFade-2" tab-switch-direction="right" class="trustee-switch-child" data-bs-toggle="tab" data-bs-target="#tabFade-pane-2"><h3 class="">Islamic</h3></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="d-md-flex h-md-100 align-items-center fw-bold" style="margin-left: 10%;">
+
+    <div class="col-12 position-absolute trustee-media">
+
+        <div class="tab-content">
+
+            <div id="tabFade-pane-1" class="tab-pane fade show active" role="tabpanel" aria-labelledby="tabFade-1">
+
+                <div class="d-flex flex-row mx-5">
+
+                    <a asp-action="ContactDetails" asp-controller="Home" asp-route-packagetype="simple_english" class="trustee-link2 p-3 mb-md-0 shadow-lg" style="margin-right: 80px;">
+
+                        <div class="d-flex justify-content-start align-items-end trustee-card" style="">
+
+                            <div>
+                                <div class="text-black">
+                                    <span class="fs-2">SIMPLE</span>
+                                </div>
+
+                                <div class="text-secondary fs-5">
+                                    N5,000
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a asp-action="ContactDetails" asp-controller="Home" asp-route-packagetype="standard_english" class="trustee-link2 p-3 mb-md-0 shadow-lg" style="margin-right: 80px;">
+
+                        <div class="d-flex justify-content-start align-items-end trustee-card" style="">
+
+                            <div>
+                                <div class="text-black">
+                                    <span class="fs-2">STANDARD</span>
+                                </div>
+
+                                <div class="text-secondary fs-5">
+                                    N8,000
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a asp-action="ContactDetails" asp-controller="Home" asp-route-packagetype="comprehend_english" class="trustee-link2 p-3 mb-md-0 shadow-lg">
+
+                        <div class="d-flex justify-content-start align-items-end trustee-card" style="">
+
+                            <div>
+                                <div class="text-black">
+                                    <span class="fs-2">COMPREHENSIVE</span>
+                                </div>
+
+                                <div class="text-secondary fs-5">
+                                    N10,000
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+
+
+
+            <div id="tabFade-pane-2" class="tab-pane fade" role="tabpanel" aria-labelledby="tabFade-2">
+
+                <div class="d-flex flex-row mx-5">
+
+                    <a asp-action="ContactDetails" asp-controller="Home" asp-route-packagetype="simple_islamic" class="trustee-link2 p-3 mb-md-0 shadow-lg" style="margin-right: 80px;">
+
+                        <div class="d-flex justify-content-start align-items-end trustee-card" style="">
+
+                            <div>
+                                <div class="text-black">
+                                    <span class="fs-2">SIMPLE</span>
+                                </div>
+
+                                <div class="text-secondary fs-5">
+                                    N5,000
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a asp-action="ContactDetails" asp-controller="Home" asp-route-packagetype="standard_islamic" class="trustee-link2 p-3 mb-md-0 shadow-lg" style="margin-right: 80px;">
+
+                        <div class="d-flex justify-content-start align-items-end trustee-card" style="">
+
+                            <div>
+                                <div class="text-black">
+                                    <span class="fs-2">STANDARD</span>
+                                </div>
+
+                                <div class="text-secondary fs-5">
+                                    N8,000
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a asp-action="ContactDetails" asp-controller="Home" asp-route-packagetype="comprehend_islamic" class="trustee-link2 p-3 mb-md-0 shadow-lg">
+
+                        <div class="d-flex justify-content-start align-items-end trustee-card" style="">
+
+                            <div>
+                                <div class="text-black">
+                                    <span class="fs-2">COMPREHENSIVE</span>
+                                </div>
+
+                                <div class="text-secondary fs-5">
+                                    N10,000
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script>$(function () {
+
+            let tab = $("#trustee-switch-control");
+
+            tab.find(".trustee-switch-child").on("click", function () {
+
+                let $this = $(this);
+
+                //if ($this.hasClass("active")) return;
+
+                let direction = $this.attr("tab-switch-direction");
+
+                tab.removeClass("left right").addClass(direction);
+
+                tab.find(".trustee-switch-child.active").removeClass("active");
+
+                $this.addClass("active");
+            });
+        });</script>
+
+}
+
+
+
+
+
+
+<div class="d-md-flex flex-row h-md-100 align-items-center mt-md-0 pt-5">
+
+    <div class=" mb-md-0 mt-5 pt-5">
+
+        <form method="get">
+
+            <div class="p-0 offset-4 col-7 trustee-link-parent">
+
+                <button asp-action="Homepage" asp-controller="Home" asp-route-template="will" class="p-0 border-0 shadow-lg" style="border-radius: 20px;">
+
+                    <div class="trustee-link" style="border-radius: 20px;">
+
+                        <img style="border-top-left-radius: 20px; border-top-right-radius: 20px;" src="/images/hand.jpg" class="card-img" alt="login-logo">
+
+                        <div class="d-flex flex-row p-4 trustee-div">
+
+                            <div class="col-6 ps-2">
+                                <h1 class="">Write your WILL</h1>
+                            </div>
+
+                            <div class="d-flex offset-4 col-2 align-self-center p-0 pe-2 justify-content-end">
+                                <i class="bi bi-arrow-right-circle-fill fs-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+            </div>
+        </form>
+    </div>
+
+
+    <div class=" mt-5 pt-5">
+
+        <form method="get">
+
+            <div class="p-0 offset-1 col-7 trustee-link-parent">
+
+                <button asp-action="Homepage" asp-controller="Home" asp-route-template="trust" type="submit" class="p-0 border-0 shadow-lg" style="border-radius: 20px;">
+
+                    <div class="trustee-link" style="border-radius: 20px;">
+
+                        <img style="border-top-left-radius: 20px; border-top-right-radius: 20px;" src="/images/hands.jpg" class="card-img" alt="login-logo">
+
+                        <div class="d-flex flex-row p-4 trustee-div">
+
+                            <div class="col-6 ps-2">
+                                <h1 class="">Create your TRUST</h1>
+                            </div>
+
+                            <div class="d-flex offset-4 col-2 align-self-center p-0 pe-2 justify-content-end">
+                                <i class=" bi bi-arrow-right-circle-fill fs-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@*@section Scripts{
+
+        <script>
+
+        .trustee-link: hover img{
+                opacity: 0.5;
+                }
+
+                        .trustee-link: hover.trustee-div{
+                {
+                    background-color: white;
+                    color: #d43662;
+                }
+            }
+
+        </script>
+
+    }*@
+
+
+
+
+
+
+@*.trustee-image:hover {
+        opacity: 0.5;
+    }
+        .trustee-link:hover {
+            background-color: white;
+            color: #d43662;
+        }*@
+
+
+
+
+
+
+
+
+@*<i class="fa-solid fa-circle-chevron-right"></i>*@
+
+
+
+
+
+
+
+@*<div class=" d-flex flex-row h-md-100 align-items-center">
+
+        <div class="col align-self-center">
+
+            <div style="max-width: 500px; margin-left: calc(100% - calc(500px + calc(100% - 900px))); " class="d-md-flex align-items-center h-md-100">
+
+                <div class="row row-cols-md-auto mb-3 d-flex flex-column">
+
+                    <form method="post">
+
+                        <div class="card p-0 " style="border-radius: 10px">
+                            <img style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="images/pexels-essow-936722.jpg" class="card-img" alt="login-logo">
+
+                            <div class="d-flex flex-row p-4">
+
+                                <div class="col-8 ps-2">
+                                    <h1 class="text-black">Create your TRUST</h1>
+                                </div>
+
+                                <div class="d-flex offset-2 col-2 align-self-center p-0 pe-2 justify-content-end">
+                                    <button asp-action="Login" asp-controller="Home" type="submit" class="btn btn-sm p-0">
+                                        <i class="bi bi-arrow-right-circle-fill fs-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col align-self-center">
+
+            <div style="max-width: 500px; margin-left: calc(100% - 900px); " class="d-md-flex align-items-center h-md-100">
+
+                <div class="row row-cols-md-auto mb-3 d-flex flex-column">
+
+                    <form method="post">
+
+                        <div class="card p-0" style="border-radius: 10px">
+                            <img style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="images/pexels-essow-936722.jpg" class="card-img" alt="login-logo">
+
+                            <div class="d-flex flex-row p-4">
+
+                                <div class="col-8 ps-2">
+                                    <h1 class="text-black">Create your TRUST</h1>
+                                </div>
+
+                                <div class="d-flex offset-2 col-2 align-self-center p-0 pe-2 justify-content-end">
+                                    <button asp-action="Login" asp-controller="Home" type="submit" class="btn btn-sm p-0">
+                                        <i class="bi bi-arrow-right-circle-fill fs-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>*@

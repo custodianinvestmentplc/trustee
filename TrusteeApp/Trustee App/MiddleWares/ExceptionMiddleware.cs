@@ -37,6 +37,7 @@ namespace TrusteeApp.MiddleWares
             {
                 log.Error(DateTime.Now.ToString(), ex);
                 _logger.LogError(ex, ex.Message);
+                LogWriterController.Write(ex.Message);
 
                 var host = $"{context.Request.Host}";
 

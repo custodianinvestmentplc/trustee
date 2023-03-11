@@ -1,48 +1,7 @@
 {
-  "ApplicationUser": [
-    {
-      "Id": "b9d72f32-02e7-4bc1-b029-7ae4909711ce",
-      "UserName": "ogbiane@yahoo.com",
-      "NormalizedUserName": "OGBIANE@YAHOO.COM",
-      "Email": "ogbiane@yahoo.com",
-      "NormalizedEmail": "OGBIANE@YAHOO.COM",
-      "EmailConfirmed": true,
-      "PasswordHash": "AQAAAAEAACcQAAAAEKleaPZbZsHwPyAe7XkfsS1I\u002Bu51up4rfx639B7q0vFRd0Znbwzy4BzXuQTqzhw7Qg==",
-      "PhoneNumber": "098765435678",
-      "SecurityStamp": "a4378f9e-99bc-47cf-b15d-e9ad107d89a7",
-      "ConcurrencyStamp": "550541ae-d279-47c3-802f-c0facf72f549",
-      "LockoutEnd": "",
-      "PhoneNumberConfirmed": false,
-      "LockoutEnabled": false,
-      "TwoFactorEnabled": false,
-      "AccessFailedCount": 0
-    }
-  ],
+  "ApplicationUser": [],
   "IdentityRole": [],
-  "TrusteePackage": [
-    {
-      "Id": "07-ea3b-41b0-bac4-1e74519c2aef",
-      "Template": "Will",
-      "Language": "Islamic",
-      "Product": "Simple",
-      "Price": null,
-      "OwnerId": "b9d72f32-02e7-4bc1-b029-7ae4909711ce",
-      "OwnerEmail": "ogbiane@yahoo.com",
-      "CreateDate": "2023-03-07T14:35:21.3400748\u002B01:00",
-      "PackageStatus": "NEW"
-    },
-    {
-      "Id": "02-7c7f-497d-a033-87081572d698",
-      "Template": "Will",
-      "Language": "English",
-      "Product": "Simple",
-      "Price": null,
-      "OwnerId": "b9d72f32-02e7-4bc1-b029-7ae4909711ce",
-      "OwnerEmail": "ogbiane@yahoo.com",
-      "CreateDate": "2023-03-07T15:16:56.3159729\u002B01:00",
-      "PackageStatus": "NEW"
-    }
-  ],
+  "TrusteePackage": [],
   "UserContactDetails": [],
   "MeansOfIdentification": [],
   "SimpleWillMoney": [],

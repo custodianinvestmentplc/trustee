@@ -25,13 +25,18 @@ namespace TrusteeApp.Controllers
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod()!.DeclaringType);
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IEmailSender _emailSender;
 
-        public HomeController(IConfiguration configuration, IHttpClientFactory httpClientFactory, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+
+        public HomeController(IConfiguration configuration, IHttpClientFactory httpClientFactory, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
+            _emailSender = emailSender;
         }
 
         [ViewLayout("_IndexLayout")]

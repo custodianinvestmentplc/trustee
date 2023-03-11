@@ -1,37 +1,26 @@
-using TrusteeApp.Domain;
-using TrusteeApp.Models;
-using TrusteeApp.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.CookiePolicy;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
 using System.Net.Http.Headers;
-using TrusteeApp.Repo;
-using AutoMapper;
-using TrusteeApp.MiddleWares;
-using System.Configuration;
-using TrusteeApp.Domain.Dtos;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using TrusteeApp.Email;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Trustee_App.Services;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using TrusteeApp.Domain.Dtos;
+using TrusteeApp.Email;
+using TrusteeApp.MiddleWares;
+using TrusteeApp.Models;
 
 namespace TrusteeApp
 {
     public class Startup
     {
-        private readonly LoginConfig _loginConfig;
-        private readonly DatabaseConfig _dbConfig;
+        //private readonly LoginConfig _loginConfig;
+        //private readonly DatabaseConfig _dbConfig;
 
         private readonly string? _baseUrl;
         private readonly MediaTypeWithQualityHeaderValue _contentType;
         private readonly IConfiguration configuration;
+
+        private IApplicationBuilder? _app;
 
         public Startup(IConfiguration configuration)
         {
@@ -44,8 +33,8 @@ namespace TrusteeApp
             configuration.GetSection("auth").Bind(config);
             configuration.GetSection("databases").Bind(db);
 
-            _loginConfig = config;
-            _dbConfig = db;
+            //_loginConfig = config;
+            //_dbConfig = db;
             _baseUrl = baseUrl;
             _contentType = contentType;
             this.configuration = configuration;
@@ -81,8 +70,7 @@ namespace TrusteeApp
                 httpClient.DefaultRequestHeaders.Accept.Add(_contentType);
             });
 
-            //services.AddSingleton(_loginConfig);
-            services.AddSingleton(_dbConfig);
+            //services.AddSingleton(_dbConfig);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSession(Options =>
@@ -92,35 +80,25 @@ namespace TrusteeApp
                 Options.Cookie.IsEssential = true;
             });
 
-            //services.AddScoped<ICPCHubServices>(s => new CPCHubServiceFacade(_dbConfig.cpc));
-            //services.AddScoped<IAuthProvider, AuthProvider>();
-
-            //services.AddAutoMapper(typeof(MappingProfiles));
-
             services.AddControllersWithViews();
 
-            //services.Configure<UserRegisterDto>(configuration.GetSection("userregister"));
-
-            //services.AddControllers(options =>
-            //{
-            //    options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
-            //});
+            services.AddSingleton<IControllerActivator>(new ExceptionHandlingControllerActivator(services));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseMiddleware<ExceptionMiddleware>();
+            //    if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+            //    else app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<ExceptionMiddleware>();
 
-                //app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                //app.UseHsts();
-            }
+            app.Map("/errorresponse", errorresponse => {
+
+                errorresponse.Run(async (context) =>
+                {
+                    await context.Response.WriteAsync("Internal server error occured while creating API controller.");
+                });
+            });
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();

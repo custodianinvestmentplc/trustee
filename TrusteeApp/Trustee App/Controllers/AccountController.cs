@@ -1,28 +1,14 @@
 ﻿using System.Net;
 using System.Reflection;
-using System.Security.Claims;
 using System.Text;
-using System.Text.Encodings.Web;
-using Mailjet.Client.Resources;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Identity.Client;
 using TrusteeApp.Domain.Dtos;
-using TrusteeApp.Email;
-using TrusteeApp.Errors;
 using TrusteeApp.Filters;
-using TrusteeApp.Models;
-using TrusteeApp.Repo;
 using TrusteeApp.Services;
-using TrusteeApp.ViewModels;
-using System.Threading.Tasks;
 
 namespace TrusteeApp.Controllers
 {
@@ -36,6 +22,7 @@ namespace TrusteeApp.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
+
 
         public AccountController(IConfiguration configuration, IHttpClientFactory httpClientFactory, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
         {
@@ -107,7 +94,7 @@ namespace TrusteeApp.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public async Task<IActionResult> RegisterPost(UserModel Input)
         {
@@ -158,6 +145,7 @@ namespace TrusteeApp.Controllers
             {
                 bool isLoggedIn = User.Identity!.IsAuthenticated;
 
+                //change ensure
                 if (isLoggedIn) await _signInManager.SignOutAsync();
                 //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -172,7 +160,7 @@ namespace TrusteeApp.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public async Task<IActionResult> LoginPostRequest(UserModel Input)
         {
@@ -209,7 +197,7 @@ namespace TrusteeApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ConfirmEmail(UserModel Input)
         {
             try
@@ -359,7 +347,7 @@ namespace TrusteeApp.Controllers
         public IActionResult ForgotPassword() => View();
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public async Task<IActionResult> ForgotPasswordPost(UserModel Input)
         {
@@ -470,7 +458,7 @@ namespace TrusteeApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult ConfirmPasswordEmail(UserModel Input)
         {
             try
@@ -506,7 +494,7 @@ namespace TrusteeApp.Controllers
         public IActionResult ResetPassword() => View();
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public async Task<IActionResult> ResetPasswordPostAsync(UserModel Input)
         {
@@ -653,7 +641,7 @@ namespace TrusteeApp.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePasswordPost(UserModel Input)
         {
             try
@@ -724,7 +712,7 @@ namespace TrusteeApp.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetPasswordPost(UserModel Input)
         {
             try

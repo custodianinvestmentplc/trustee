@@ -41,7 +41,9 @@ namespace TrusteeApp.MiddleWares
 
                 var host = $"{context.Request.Host}";
 
-                var urlString = $@"https://{host}/Home/Error?errorcode={(int)HttpStatusCode.NotFound}&errortype={"notFound"}&message={"Oop! Page you requested... doesn't exist"}&detail={"Sorry, We could not find the page you are looking for"}";
+                var urlString = ex.Message.ToLower().Contains("cannot dynamically create an instance of type") ?
+                    $@"https://{host}/errorresponse" :
+                     $@"https://{host}/Home/Error?errorcode={(int)HttpStatusCode.NotFound}&errortype={"notFound"}&message={"Oop! Page you requested... doesn't exist"}&detail={"Sorry, We could not find the page you are looking for"}";
 
                 var url = new Uri(urlString).ToString();
 

@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Welcome Page";
+}
+
+
+<div class="container-fluid px-0" style="padding-top: 2%">
+
+    <div class="bnslider-wrapper">
+
+        <div id="custom-bnr" class="bnslider">
+
+            <div class="bnslider-slide">
+
+                <img alt="" class="" src="/images/custodian-trustees-banner2.jpg">
+
+                <div class="bnslider-text-wrap bnslider-overlay">
+                    <div class="bnslider-text-content txt-middle txt-left">
+                        <div class="bnslider-text-content-flex container">
+
+                            <div class="bnslider-vert text-center">
+
+                                <div class="bnslider-text bnslider-text--sm" style="margin-top: 2em; opacity: 1; color: white; background-color:">Secure</div>
+
+                                <div class="bnslider-text bnslider-text--xs" style="font-weight: 400; opacity: 1; background-color: white; color: #d43662;">
+
+                                    <a class="btn btn-sm bg-white " href="#"></a>LEARN MORE
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bnslider-slide">
+
+                <img alt="" class="" src="/images/b14-w.jpg" style="object-fit: fill">
+
+                <div class="bnslider-text-wrap bnslider-overlay">
+                    <div class="bnslider-text-content">
+                        <div class="bnslider-text-content-flex container-fluid">
+                            <div class="bnslider-vert text-right">
+
+                                <div class="bnslider-text bnslider-text--md" style="font-size: 0.9em; color: white; background-color: #d43662; opacity: 1;">TRUST</div>
+                                <div class="bnslider-text bnslider-text--xs" style="font-weight: 400; opacity: 1; background-color: white; color: #d43662;">
+
+                                    <a class="btn btn-sm bg-white " href="#"></a>LEARN MORE
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bnslider-arrows bnslider-arrows--bg container-fluid" id="arrow-place" style="top: 50%">
+            <div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="container">
+
+    <div class="d-flex align-items-center justify-content-center">
+        <a asp-action="Login" asp-controller="Account" class="d-flex align-items-center justify-content-center col-4  p-3 mb-md-0 ">
+            <div class="d-flex justify-content-between fs-2 text-black">
+                <span>GET STARTED </span> &nbsp;
+                <i class="bi bi-chevron-right"></i>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="container">
+
+    <div class="d-flex align-items-center justify-content-center">
+        <a asp-action="Login" asp-controller="Account" class="d-flex align-items-center justify-content-center col-4 rounded-pill trustee-link2 p-3 mb-md-0 shadow-lg" style="margin-right: 80px; color: white; background-color: #d43662;">
+            <span class="text-center fs-2">WRITE YOUR WILL</span>
+        </a>
+
+        <a asp-action="Login" asp-controller="Account" class="d-flex align-items-center justify-content-center col-4 rounded-pill trustee-link2 p-3 mb-md-0 shadow-lg" style="color: white; background-color: #d43662;">
+            <span class="text-center fs-2">CREATE YOUR TRUST</span>
+        </a>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script>$(document).on('ready', () => {
+
+            //let arrowsplace = document.getElementsByClassName('arrow-place');
+            let arrowsplace = document.getElementsByClassName('bnslider-arrows');
+
+            $('.bnslider').slick({
+                appendArrows: arrowsplace,
+                prevArrow: '<button type="button" class="slick-prev btn btn-lg"><i class="bi bi-arrow-left fs-1"></i></button>',
+                nextArrow: '<button type="button" class="slick-next btn btn-lg"><i class="bi bi-arrow-right fs-1"></i></button>',
+                infinite: true,
+                //arrows: true,
+                dots: true,
+                fade: false,
+                adaptiveHeight: false,
+                autoplay: true,
+                slidesToShow: 1,
+                swipe: false,
+                //speed: 5000
+            })
+        });</script>
+}
+

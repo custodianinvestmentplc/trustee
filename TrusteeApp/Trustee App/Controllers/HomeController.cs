@@ -39,9 +39,34 @@ namespace TrusteeApp.Controllers
             _emailSender = emailSender;
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            try
+            {
+                bool isLoggedIn = User.Identity!.IsAuthenticated;
+
+                if (isLoggedIn) await _signInManager.SignOutAsync();
+
+                return RedirectToAction("LandingPage");
+            }
+            catch (Exception ex)
+            {
+                log.Error(DateTime.Now.ToString(), ex); LogWriterController.Write(ex.Message);
+
+                return RedirectToAction("LandingPage");
+            }
+        }
+
+        [AllowAnonymous]
+        [ViewLayout("_LandingPageLayout")]
+        [HttpGet]
+        public IActionResult LandingPage() => View();
+
         [ViewLayout("_IndexLayout")]
         [HttpGet]
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> HomePage()
         {
             try
             {
@@ -138,7 +163,7 @@ namespace TrusteeApp.Controllers
 
                 log.Error(DateTime.Now.ToString(), ex); LogWriterController.Write(ex.Message);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("HomePage");
             }
         }
 
@@ -195,7 +220,7 @@ namespace TrusteeApp.Controllers
 
                 log.Error(DateTime.Now.ToString(), ex); LogWriterController.Write(ex.Message);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("HomePage");
             }
         }
 
@@ -276,7 +301,7 @@ namespace TrusteeApp.Controllers
 
                 log.Error(DateTime.Now.ToString(), ex); LogWriterController.Write(ex.Message);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("HomePage");
             }
         }
 
@@ -405,7 +430,7 @@ namespace TrusteeApp.Controllers
 
                 log.Error(DateTime.Now.ToString(), ex); LogWriterController.Write(ex.Message);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("HomePage");
             }
         }
 
@@ -541,7 +566,7 @@ namespace TrusteeApp.Controllers
 
                 log.Error(DateTime.Now.ToString(), ex); LogWriterController.Write(ex.Message);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("HomePage");
             }
         }
 

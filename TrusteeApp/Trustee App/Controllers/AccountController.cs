@@ -182,7 +182,7 @@ namespace TrusteeApp.Controllers
 
                 log.Info($"{DateTime.Now.ToString()} - Logged in the User {Input.Email}");
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomePage", "Home");
 
             }
             catch (Exception ex)
@@ -571,7 +571,7 @@ namespace TrusteeApp.Controllers
                     TempData["SuccessAlert"] = "Thank you for confirming your email.";
                     //Input.StatusMessage = "Thank you for confirming your email.";
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("HomePage", "Home");
                 }
                 throw new Exception("Error confirming your email.");
             }
@@ -754,4 +754,3 @@ namespace TrusteeApp.Controllers
         }
     }
 }
-

@@ -1,5 +1,23 @@
 {
-  "ApplicationUser": [],
+  "ApplicationUser": [
+    {
+      "Id": "8e3644d1-d2aa-41f1-b5ec-d1f90be3f1fb",
+      "UserName": "ogbiane@yahoo.com",
+      "NormalizedUserName": "OGBIANE@YAHOO.COM",
+      "Email": "ogbiane@yahoo.com",
+      "NormalizedEmail": "OGBIANE@YAHOO.COM",
+      "EmailConfirmed": true,
+      "PasswordHash": "AQAAAAEAACcQAAAAENz6vtn4SRm7Y4aVibDF2ojR3hxIOsdvl6AhTc9GuuDYx8fXMJMAZ4JTTdMVRYC6sA==",
+      "PhoneNumber": "098765435678",
+      "SecurityStamp": "ed13d901-b6d4-45b6-8577-8a531f427ed5",
+      "ConcurrencyStamp": "9ef0f4e5-bfa1-46b6-a1d4-7b87e0623eb2",
+      "LockoutEnd": "",
+      "PhoneNumberConfirmed": false,
+      "LockoutEnabled": false,
+      "TwoFactorEnabled": false,
+      "AccessFailedCount": 0
+    }
+  ],
   "IdentityRole": [],
   "TrusteePackage": [],
   "UserContactDetails": [],
